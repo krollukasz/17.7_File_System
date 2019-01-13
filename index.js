@@ -1,35 +1,15 @@
-var os = require("./modules/OSinfo") // zaimportowanie modułu "os"
+var fs = require("fs"); // zaimportowanie modułu "fs"
+var folder = "../17.7_File_System/"; // zapisanie ścieżki do folderu w zmiennej "folder"
 
-process.stdin.setEncoding("utf-8"); // ustawienie odpowiedniego enkodowania, odczytanie wartości jako string kodowany z utf-8
-
-process.stdin.on("readable", function() { // ustawienie nasłuchiwania na zdarzenia odczytu za pomocą .on
-  var input = process.stdin.read(); // metoda .read() ma odczytać, co wpisał użytkownik
-  if (input !== null) { // instrukcja warunkowa, która sprawdzająca, czy na wejściu podano jakąś wartość
-    
-    var instruction = input.toString().trim();
-      switch (instruction) {
-        case "/exit":
-          process.stdout.write("Quitting app!\n");
-          process.exit();
-          break;
-
-        case "/version":
-          process.stdout.write("Your version of node.js is: " + process.versions.node + "\n");
-          process.exit();
-          break;
-
-        case "/language":
-          process.stdout.write("The language of your operating system is: " + process.env.lang + "\n");
-          process.exit();
-          break;
-
-        case "/getOSinfo":
-          os.print();
-        break;        
-
-        default:
-          process.stderr.write("Wrong instruction!\n");
-      }
-    process.stdin.write(input);
-  }
+fs.readdir(folder, function(err, files) { // przeczytanie zawartości katalogu i zapisanie zawartości jako tablica w "files"
+  if (err) { // jeśli jest błąd, wypisz w konsoli
+    console.log(err);
+  }; 
+    files.forEach(function(name) { // przejście po wszystkich elementach tablicy i wyświetlenie ich nazw w kosnoli
+      console.log(name);
+    });
+  fs.writeFile("dirContent.txt", function(err) {
+    if (err) throw err;
+    console.log("Successfully saved !");
+  })
 });
