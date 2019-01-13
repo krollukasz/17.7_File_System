@@ -5,11 +5,17 @@ fs.readdir(folder, function(err, files) { // przeczytanie zawartości katalogu i
   if (err) { // jeśli jest błąd, wypisz w konsoli
     console.log(err);
   }; 
-    files.forEach(function(name) { // przejście po wszystkich elementach tablicy i wyświetlenie ich nazw w kosnoli
-      console.log(name);
-    });
-  fs.writeFile("dirContent.txt", function(err) {
-    if (err) throw err;
-    console.log("Successfully saved !");
-  })
+  files.forEach(function(name) { // przejście po wszystkich elementach tablicy i wyświetlenie ich nazw w kosnoli
+    console.log(name);
+  });
+  fs.writeFile("dirContent.txt", contentName, save); // zapis pobranych nazw w pliku
 });
+
+function save(err) { // funkcja wyświetlająca komunikat o poprawnym zapisaniu do pliku
+  if (err) throw err; // jeśli wystąpi błąd, wypisz go w konsoli
+  console.log("Successfully saved !"); // komunikat o powodzeniu zapisu
+}
+
+function contentName(err, name) {
+  console.log(name);
+}
