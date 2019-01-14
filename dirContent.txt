@@ -1,3 +1,6 @@
-function contentName(err, name) {
-  console.log(name);
-}
+.git, 
+.gitignore, 
+dirContent.txt, 
+index.js, 
+package.json, 
+README.md
