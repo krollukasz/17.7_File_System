@@ -8,7 +8,10 @@ fs.readdir(folder, function(err, files) { // przeczytanie zawartości katalogu i
   files.forEach(function(name) { // przejście po wszystkich elementach tablicy i wyświetlenie ich nazw w kosnoli
     console.log(name);
   });
-  fs.writeFile("dirContent.txt", contentName, save); // zapis pobranych nazw w pliku
+  var files = files;
+  var convertedFiles = files.toString(); // konwersja tablicy przy użyciu metody .toString
+  var newLine = convertedFiles.replace(/,/g, ", \n"); // zastąpienie wartości "," z użyciem modyfikatora globalnego na ", "
+  fs.writeFile("dirContent.txt", newLine, save); // zapis pobranych nazw w pliku
 });
 
 function save(err) { // funkcja wyświetlająca komunikat o poprawnym zapisaniu do pliku
@@ -16,6 +19,6 @@ function save(err) { // funkcja wyświetlająca komunikat o poprawnym zapisaniu 
   console.log("Successfully saved !"); // komunikat o powodzeniu zapisu
 }
 
-function contentName(err, name) {
+function newLine(err, name) {
   console.log(name);
 }
