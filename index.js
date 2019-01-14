@@ -10,7 +10,7 @@ fs.readdir(folder, function(err, files) { // przeczytanie zawartości katalogu i
   });
   var files = files;
   var convertedFiles = files.toString(); // konwersja tablicy przy użyciu metody .toString
-  var newLine = convertedFiles.replace(/,/g, ", \n"); // zastąpienie wartości "," z użyciem modyfikatora globalnego na ", "
+  var newLine = convertedFiles.replace(/,/g, ", \r\n"); // zastąpienie wartości "," z użyciem modyfikatora globalnego na ", "
   fs.writeFile("dirContent.txt", newLine, save); // zapis pobranych nazw w pliku
 });
 
